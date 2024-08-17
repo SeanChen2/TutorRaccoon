@@ -1,16 +1,20 @@
 import "../css/LoginRegisterPanel.css"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function RegisterPanel() {
+
+  const navigate = useNavigate();
   
-  const [username, setUsername] = useState("N/A")
-  const [email, setEmail] = useState("N/A")
-  const [password, setPassword] = useState("N/A")
+  const [username, setUsername] = useState("N/A");
+  const [email, setEmail] = useState("N/A");
+  const [password, setPassword] = useState("N/A");
 
   const createAccount = () => {
     console.log(username)
     console.log(email)
     console.log(password)
+    navigate("/", { state: { username: username, email: email, password: password } })
   };
 
   return (

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import '../css/Home.css'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
 const API_DOMAIN = "http://localhost:8080"
 /*
@@ -11,6 +12,13 @@ ALL ICON LINKS:
 */
 
 export default function Home() {
+
+  document.body.style = "background: white;"
+
+  //Get account info passed from Register
+  const {state} = useLocation();
+  const {username, email, password} = state;
+
   const [tutors, setTutors] = useState([]);
 
   // Fetch the backend API info
