@@ -1,6 +1,8 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, origins='*')
 
 # Create these "routes" for the frontend to "GET" information from the backend or "POST" (give) information to the backend.
 # This route returns JSON which can be used by the frontend (to be displayed)
@@ -10,6 +12,10 @@ def suggested_tutors():
         {
             "tutors": [
                 # List of suggested tutors to return here
+                "Sean",
+                "Anania",
+                "Rishi",
+                "Candline"
             ]
         }
     )
