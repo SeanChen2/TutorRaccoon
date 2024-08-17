@@ -7,24 +7,34 @@ const tutorSchema = new mongoose.Schema({
         required: true
     },
 
-    university: {
+    institution: {
         type: String,
+        required: true
+    },
+
+    courses: {
+        type: Array,
         required: true
     },
 
  
 
-    teachingStyle: {
-        type: String,
+    style: {
+        type: Array,
         required: false
     },
 
     sessions: {
-        type: String,
+        type: Array,
         required: true
     },
 
-    location: {
+    availability: {
+        type: Array,
+        required: true
+    },
+
+    zip: {
         type: String,
         required: true
     },
@@ -34,9 +44,9 @@ const tutorSchema = new mongoose.Schema({
         required: true
     },
 
-    personality: {
+    bio: {
         type: String,
-        required: false
+        required: true
     },
 
 

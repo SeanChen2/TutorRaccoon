@@ -3,12 +3,14 @@ const Tutor = require('../models/tutorModel');
 exports.addTutor =  async (req,res) => {
     const tutorObj = {
         name: req.body.name,
-        university: req.body.university,
-        teachingStyle: req.body.teachingStyle,
+        institution: req.body.institution,
+        courses: req.body.courses,
+        style: req.body.teachingStyle,
         sessions: req.body.sessions,
-        location: req.body.location,
+        availability: req.body.availability,
+        zip: req.body.zip,
         rates: req.body.rates,
-        personality: req.body.personality,
+        bio: req.body.bio,
 
     }
     try{
