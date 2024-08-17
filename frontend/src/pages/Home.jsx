@@ -42,9 +42,9 @@ export default function Home() {
         <div>
           <ul>
             {
-              //"For each user with index i, return the following HTML..."
-              tutors.map((user, index) => (
-                <li key={index}>{user}</li>
+              //"For each tutor with index i, return the following HTML..."
+              tutors.map((tutor, index) => (
+                <li key={index}>{tutor["name"]}</li>
               ))
             }
           </ul>
