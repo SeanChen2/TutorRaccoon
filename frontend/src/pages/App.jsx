@@ -7,7 +7,8 @@ import Register from "./Register.jsx"
 export default function App() {
   return (
     <Routes>
-      <Route index element={<Home />}/>
+      <Route index element={<Register />}/>
+      <Route path="/home" element={<Home />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/register" element={<Register />}/>
       <Route path="/profile" element={<Profile />}/>

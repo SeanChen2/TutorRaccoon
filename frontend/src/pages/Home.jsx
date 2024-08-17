@@ -21,12 +21,17 @@ export default function Home() {
 
   const [tutors, setTutors] = useState([]);
 
+  let axiosConfig = {
+    headers: {
+      "Content-Type": 'application/json',
+    }
+  };
+
   // Fetch the backend API info
   const fetchAPI = async () => {
-
-    const response = await axios.get(API_DOMAIN + "/api/suggested_tutors");
-    setTutors(response.data.tutors);
-    console.log(tutors)
+    const post_response = await axios.post(API_DOMAIN + "/api/suggested_tutors", JSON.stringify({institution: "UW"}), axiosConfig);
+    const get_response = await axios.get(API_DOMAIN + "/api/suggested_tutors", axiosConfig);
+    setTutors(get_response.data.suggested_tutors);
 
   };
 

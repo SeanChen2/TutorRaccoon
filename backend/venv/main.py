@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app, origins='*')
+cors = CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "*"}})
 
 # Tutor accounts for testing purposes
 tutors = [
@@ -25,7 +25,11 @@ tutors = [
     }
 ]
 
-# Create these "routes" for the frontend to "GET" information from the backend or "POST" (give) information to the backend.
+student_preferences = {}
+search_filters = {}
+
+# Create these "routes" for the frontend to "POST" (send) information to backend, or "GET" (receive) information from backend
+# and the backend returns more JSON to the frontend based on the input
 
 
 # This route receives JSON about the student's preferences/data, in the following format:
@@ -40,28 +44,29 @@ tutors = [
 #   "max_dist": km the student is willing to travel (float)
 # }
 # Then, this route returns JSON containing a list of suggested tutors based on the received data.
-@app.route("/api/suggested_tutors", methods=['GET'])
+@app.route("/api/suggested_tutors", methods=['POST', 'GET'])
 def suggested_tutors():
 
-    # The JSON described above is stored in here
-    data = request.json
+    if request.method == "POST":
+        global student_preferences
+        student_preferences = request.json  # The JSON described above is stored in here
+        return jsonify({"status": "Preferences received"}), 200
 
-    # Algorithm to select suggested tutors here:
+    else:
 
+        # Algorithm to select suggested tutors here:
+        suggested_tutors = []
 
-    # Do not modify
-    return jsonify(
-        {
-            "tutors": tutors
-        }
-    )
+        # Do not modify
+        return jsonify(
+            {
+                "suggested_tutors": tutors
+            }
+        )
 
-# This route receives a tutor's email (str) and returns JSON containing the tutor's info (dict)
-@app.route("/api/tutor_profile", methods=['GET'])
-def tutor_profile():
-
-    # The tutor's email
-    email = request.json["email"]
+# This route receives a tutor's username (username variable) from the URL and returns JSON containing the tutor's info (dict)
+@app.route("/api/tutor_profile/<username>", methods=['GET'])
+def tutor_profile(username):
 
     # Algorithm to find the matching tutor profile from the tutors list here:
     tutor_profile = {}
@@ -85,22 +90,25 @@ def tutor_profile():
 #   "max_rate": maximum price charged
 # }
 # If the user doesn't enter one of these filters, the JSON will store None for that key. In this case, don't take the filter into account.
-@app.route("/api/search_tutors", methods=['GET'])
+@app.route("/api/search_tutors", methods=['POST', 'GET'])
 def search_tutors():
 
-    # The JSON described above is stored in here
-    data = request.json
+    if request.method == "POST":
+        global search_filters
+        search_filters = request.json # The JSON described above is stored in here
 
-    # Algorithm to select searched tutors here:
-    searched_tutors = []
-    
+    else:
 
-    # Do not modify
-    return jsonify(
-        {
-            "searched_tutors": searched_tutors
-        }
-    )
+        # Algorithm to select searched tutors here:
+        searched_tutors = []
+
+
+        # Do not modify
+        return jsonify(
+            {
+                "searched_tutors": searched_tutors
+            }
+        )
 
 
 
