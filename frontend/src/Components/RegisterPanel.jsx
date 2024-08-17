@@ -14,7 +14,7 @@ export default function RegisterPanel() {
     console.log(username)
     console.log(email)
     console.log(password)
-    navigate("/home", { state: { username: username, email: email, password: password } })
+    navigate("/onboarding", { state: { username: username, email: email, password: password } })
   };
 
   return (

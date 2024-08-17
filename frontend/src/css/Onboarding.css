@@ -1,0 +1,89 @@
+
+.question-content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 7rem;
+    background: white;
+    padding-bottom: 30px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-bottom: 2rem;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+}
+
+.prev-btn {
+    height: 2.6rem;
+    width: 7rem;
+    background: white;
+    color: black;
+    border-color: black;
+}
+
+.next-btn {
+    height: 2.6rem;
+    width: 7rem;
+    background: black;
+    color: white;
+    font-weight: 400;
+    padding: none;
+}
+
+.text-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.text-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.text-input label{
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.text-input input {
+    width: 27rem;
+    height: 2.3rem;
+    border-radius: 6px;
+    border-width: 1px;
+    padding-left: 10px;
+}
+
+.progress-bar {
+    display: flex;
+    flex-direction: row;
+    margin: 4rem auto;
+    gap: 8px;
+}
+
+.current-bar {
+    width: 50px;
+    height: 6px;
+    background: black;
+    border-radius: 9px;
+}
+
+.other-bar {
+    width: 50px;
+    height: 6px;
+    background: lightgray;
+    border-radius: 9px;
+}
