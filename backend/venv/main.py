@@ -60,6 +60,8 @@ def suggested_tutors():
         suggested_tutors = list(tutor_collection.find({}))
         return jsonify({"suggested_tutors": suggested_tutors})
 
+# This route receives a tutor's username (username variable) from the URL and returns JSON containing the tutor's info (dict)
+# Retrieve a tutor's profile by their name (username)
 @app.route("/api/tutor_profile/<username>", methods=['GET'])
 def tutor_profile(username):
     tutor_profile = tutor_collection.find_one({"name": username})
@@ -68,6 +70,19 @@ def tutor_profile(username):
     else:
         return jsonify({"error": "Tutor not found"}), 404
 
+# This route receives the filters from the user's search and returns a list of matching tutor profiles (list[dict])
+# The filters are in the following JSON format:
+# {
+#   "name": the tutor's name
+#   "institution": the university being attended
+#   "subject": the requested subject/course
+#   "session": the requested session (In-Person, Virtual, or Hybrid)
+#   "style": Structured & Organized, Flexible & Adaptive, Casual & Relaxed, or Goal-Oriented & Focused
+#   "min_rate": minimum price charged
+#   "max_rate": maximum price charged
+# }
+# If the user doesn't enter one of these filters, the JSON will store None for that key. In this case, don't take the filter into account.
+# Search for tutors based on filters
 @app.route("/api/search_tutors", methods=['POST', 'GET'])
 def search_tutors():
     if request.method == "POST":

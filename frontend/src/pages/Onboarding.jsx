@@ -222,9 +222,9 @@ export default function Onboarding() {
         </div>
 
         : questionIndex == 4 ? <div className="session-container">
-          <BigButton icon="../icons/inperson_icon.svg" className="big-button" onClick={() => setSession("In-Person")}>In-person</BigButton>
-          <BigButton icon="../icons/virtual_icon.svg" className="big-button" onClick={() => setSession("Virtual")}>Virtual</BigButton>
-          <BigButton icon="../icons/hybrid_icon.svg" className="big-button" onClick={() => setSession("Hybrid")}>Hybrid</BigButton>
+          <BigButton icon="../icons/inperson_icon.svg" className="big-button" onClick={() => {setSession("In-Person"); navNext();}}>In-person</BigButton>
+          <BigButton icon="../icons/virtual_icon.svg" className="big-button" onClick={() => {setSession("Virtual"); navNext();}}>Virtual</BigButton>
+          <BigButton icon="../icons/hybrid_icon.svg" className="big-button" onClick={() => {setSession("Hybrid"); navNext();}}>Hybrid</BigButton>
         </div>
 
         : questionIndex == 5 ? <div>
@@ -237,12 +237,12 @@ export default function Onboarding() {
 
         : questionIndex == 6 ? <div className="availability-container-rows">
           <div className="availability-container-cols">
-            <BigButton icon="../icons/morning_icon.svg" className="long-button" onClick={() => setAvailability("Morning")}>Morning</BigButton>
-            <BigButton icon="../icons/afternoon_icon.svg" className="long-button" onClick={() => setAvailability("Afternoon")}>Afternoon</BigButton>
+            <BigButton icon="../icons/morning_icon.svg" className="long-button" onClick={() => {setAvailability("Morning"); navNext()}}>Morning</BigButton>
+            <BigButton icon="../icons/afternoon_icon.svg" className="long-button" onClick={() => {setAvailability("Afternoon"); navNext()}}>Afternoon</BigButton>
           </div>
           <div className="availability-container-cols">
-            <BigButton icon="../icons/evening_icon.svg" className="long-button" onClick={() => setAvailability("Evening")}>Evening</BigButton>
-            <BigButton icon="../icons/night_icon.svg" className="long-button" onClick={() => setAvailability("Night")}>Night</BigButton>
+            <BigButton icon="../icons/evening_icon.svg" className="long-button" onClick={() => {setAvailability("Afternoon"); navNext()}}>Evening</BigButton>
+            <BigButton icon="../icons/night_icon.svg" className="long-button" onClick={() => {setAvailability("Night"); navNext()}}>Night</BigButton>
           </div>
         </div>
 
@@ -254,7 +254,7 @@ export default function Onboarding() {
           />
         </div>
 
-        : questionIndex == 8 ? <div>
+        : questionIndex == 8 ? <div className="text-input-container">
           <TextInput label="ZIP Code" placeholder="Enter your ZIP code" onChange={e => setZip(e.target.value)} maxLength={6}/>
         </div>
 
@@ -267,8 +267,8 @@ export default function Onboarding() {
         </div>
 
         : questionIndex == 10 ? <div className="personality-container">
-          <BigButton icon="../icons/yes_icon.svg" className="xl-button" >Yes, I want to find the best match!</BigButton>
-          <BigButton icon="../icons/no_icon.svg" className="xl-button" >No thanks, I'll choose a tutor myself.</BigButton>
+          <BigButton icon="../icons/yes_icon.svg" className="xl-button" onClick={navNext}>Yes, I want to find the best match!</BigButton>
+          <BigButton icon="../icons/no_icon.svg" className="xl-button" onClick={navNext}>No thanks, I'll choose a tutor myself.</BigButton>
         </div>
 
         : questionIndex == 11 ? <LimitedTextArea

@@ -44,8 +44,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container">
-      <div className='header'>
+    <div className='home-container'>
+      <div className='home-header'>
         <div className='dropdown-container'>
           <Dropdown placeholder="Course" options={subjectOptions} className="search-dropdown"/>
           <Dropdown placeholder="Teaching Style" options={styleOptions} className="search-dropdown"/>
@@ -56,9 +56,10 @@ export default function Home() {
         <SearchBar placeholder="Search for tutors..." />
       </div>
       
-      <h1 className='heading'>Suggested Tutors</h1>
-      <div className='subheading'>Meet your match. Expert tutors tailored to your needs.</div>
-
+      <div className='heading-container'>
+        <h1 className='heading'>Suggested Tutors</h1>
+        <div className='subheading'>Meet your match. Expert tutors tailored to your needs.</div>
+      </div>
 
     </div>
   )

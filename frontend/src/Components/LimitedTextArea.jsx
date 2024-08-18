@@ -12,7 +12,7 @@ export default function LimitedTextArea({placeholder, charLimit, ...props}) {
     };
 
     return (
-        <div>
+        <div className="bio-container">
             <textarea 
                 className="bio-text-area" 
                 placeholder={placeholder} 

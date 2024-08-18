@@ -1,14 +1,17 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
   padding: 2rem;
 }
 
-.header {
+.home-container {
+  padding: 4rem;
+}
+
+.home-header {
   display: flex;
   flex-direction: row;
   width: 100%;
-
+  margin-bottom: 5rem;
 }
 
 .dropdown-container {
@@ -18,19 +21,34 @@
 }
 
 .search-dropdown {
-  width: 8rem;
+  width: 9rem;
   height: 3rem;
   border-radius: 6px;
-  padding-left: 10px;
-  box-shadow: 2px 2px grey;
+  padding: 0 10px;
+  box-shadow: 2px 2px lightgray;
+}
+
+.search-bar-container {
+  margin-left: auto;
+  float: right;
 }
 
 .search-bar {
-  
+  width: 23rem;
+  height: 2.3rem;
+  border-radius: 6px;
+  padding-left: 10px;
+  background: #ebebeb;
+  box-shadow: 3px 3px lightgray;
+  border: none;
+}
+
+.heading-container {
+  margin-left: 1rem;
 }
 
 .heading {
-
+  color: #5A53B2;
 }
 
 .subheading {

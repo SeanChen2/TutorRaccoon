@@ -45,6 +45,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .text-input {
@@ -94,12 +96,17 @@
     border-radius: 6px;
     border-width: 1px;
     padding-left: 10px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .session-container {
     display: flex;
     flex-direction: row;
     gap: 3rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .big-button {
@@ -135,6 +142,8 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .availability-container-cols {
@@ -196,6 +205,13 @@
 .xl-button:active {
     background-color: #3e8e41;
     transform: translateY(4px);
+}
+
+.bio-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .bio-text-area {
