@@ -11,8 +11,8 @@ tutors = [
         "institution": "University of Waterloo",
         "courses": ["Math", "Computer Science"],
         "style": ["Structured and Organized", "Goal-Oriented and Focused"],
-        "sessions": ["In-Person", "Virtual"],
-        "availability": ["Morning", "Evening"],
+        "sessions": "In-Person",
+        "availability": "Evening",
         "zip": "A#A#A#",
         "rates": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
@@ -37,9 +37,9 @@ search_filters = {}
 #   "institution": the university being attended (str)
 #   "major": the student's major (str)
 #   "subjects": the subjects the student needs help with (list of str)
-#   "sessions": In-Person, Virtual, and/or Hybrid (list of str)
+#   "sessions": In-Person, Virtual, or Hybrid (str)
 #   "style": Structured & Organized, Flexible & Adaptive, Casual & Relaxed, and/or Goal-Oriented & Focused (list of str)
-#   "availability": Morning, Afternoon, Evening, and/or Night (list of str)
+#   "availability": Morning, Afternoon, Evening, or Night (str)
 #   "budget": MAX $ the student willing to pay (float)
 #   "max_dist": km the student is willing to travel (float)
 # }
