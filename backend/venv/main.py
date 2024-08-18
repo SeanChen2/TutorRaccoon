@@ -23,15 +23,17 @@ ZIPCODEBASE_API_URL = "https://app.zipcodebase.com/api/v1/distance"
 # Tutor accounts for testing purposes
 tutors = [
     {
+        "pfp": "../images/person1.jpg",
         "username": "Endphite",
         "firstName": "Sean",
         "lastName": "Chen",
         "institution": "University of Waterloo",
-        "courses": ["Math", "Computer Science"],
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],   #first subject is the "subject of expertise"
         "style": ["Structured and Organized", "Goal-Oriented and Focused"],
         "session": "In-Person",
         "availability": "Evening",
-        "zip": "A#A#A#",
+        "zip": "N6L1J9",
         "rates": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
     },

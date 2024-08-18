@@ -44,7 +44,7 @@
 }
 
 .heading-container {
-  margin-left: 1rem;
+  margin: 3rem 1rem;
 }
 
 .heading {
@@ -53,4 +53,62 @@
 
 .subheading {
 
+}
+
+.tutor-card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 27rem);
+  grid-template-rows: repeat(2, 35rem);
+}
+
+.tutor-card {
+  border: 2px solid #5A53B2;
+  width: 20rem;
+  height: 28rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 6px 6px #ebebeb;
+}
+
+.tutor-card:hover {
+  border-width: 3px;
+  transform: translateY(4px);
+}
+
+.tutor-pfp img {
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.tutor-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+.info-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-tag {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.subject-row {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.subject-box {
+  border: 1px solid #5A53B2;
+  padding: 1px 8px;
 }

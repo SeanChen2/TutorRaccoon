@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import Dropdown from '../Components/Dropdown'
 import { subjectOptions, styleOptions, sessionOptions, availabilityOptions, distanceOptions } from './Onboarding'
 import SearchBar from '../Components/SearchBar'
+import TutorCard from '../Components/TutorCard'
 
 const API_DOMAIN = "http://localhost:8080"
 /*
@@ -23,7 +24,6 @@ export default function Home() {
   const { username, email, password, firstName, lastName, institution, courses, style, session, availability, zip, rates, bio } = state;
 
   const [tutors, setTutors] = useState([]);
-  const [zipCode, setZipCode] = useState('');
   const [distance, setDistance] = useState(null);
 
   let axiosConfig = {
@@ -36,15 +36,125 @@ export default function Home() {
   const fetchAPI = async () => {
     const postData = {
       institution: "UW",
-      zip: zipCode,
+      zip: zip,
       max_dist: distance,
       country: "us", // or dynamically capture from the user
       unit: "km" // or "miles", based on preference
     };
 
-    const post_response = await axios.post(API_DOMAIN + "/api/suggested_tutors", JSON.stringify(postData), axiosConfig);
-    const get_response = await axios.get(API_DOMAIN + "/api/suggested_tutors", axiosConfig);
-    setTutors(get_response.data.suggested_tutors);
+    // const post_response = await axios.post(API_DOMAIN + "/api/suggested_tutors", JSON.stringify(postData), axiosConfig);
+    // const get_response = await axios.get(API_DOMAIN + "/api/suggested_tutors", axiosConfig);
+    // setTutors(get_response.data.suggested_tutors);
+    // console.log(tutors)
+    
+    //FOR TESTING
+    setTutors([
+      {
+        "pfp": "../images/person1.jpg",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
+        "institution": "University of Waterloo",
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],
+        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "session": "In-Person",
+        "availability": "Evening",
+        "zip": "N6L1J9",
+        "rates": "$25/hour",
+        "bio": "A focused tutor passionate about math and computer science."
+      },
+      {
+        "pfp": "../images/person1.jpg",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
+        "institution": "University of Waterloo",
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],
+        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "session": "In-Person",
+        "availability": "Evening",
+        "zip": "N6L1J9",
+        "rates": "$25/hour",
+        "bio": "A focused tutor passionate about math and computer science."
+      },
+      {
+        "pfp": "../images/person1.jpg",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
+        "institution": "University of Waterloo",
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],
+        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "session": "In-Person",
+        "availability": "Evening",
+        "zip": "N6L1J9",
+        "rates": "$25/hour",
+        "bio": "A focused tutor passionate about math and computer science."
+      },
+      {
+        "pfp": "../images/person1.jpg",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
+        "institution": "University of Waterloo",
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],
+        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "session": "In-Person",
+        "availability": "Evening",
+        "zip": "N6L1J9",
+        "rates": "$25/hour",
+        "bio": "A focused tutor passionate about math and computer science."
+      },
+      {
+        "pfp": "../images/person1.jpg",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
+        "institution": "University of Waterloo",
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],
+        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "session": "In-Person",
+        "availability": "Evening",
+        "zip": "N6L1J9",
+        "rates": "$25/hour",
+        "bio": "A focused tutor passionate about math and computer science."
+      },
+      {
+        "pfp": "../images/person1.jpg",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
+        "institution": "University of Waterloo",
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],
+        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "session": "In-Person",
+        "availability": "Evening",
+        "zip": "N6L1J9",
+        "rates": "$25/hour",
+        "bio": "A focused tutor passionate about math and computer science."
+      },
+      {
+        "pfp": "../images/person1.jpg",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
+        "institution": "University of Waterloo",
+        "major": "Software Engineering",
+        "subjects": ["Math", "Computer Science"],
+        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "session": "In-Person",
+        "availability": "Evening",
+        "zip": "N6L1J9",
+        "rates": "$25/hour",
+        "bio": "A focused tutor passionate about math and computer science."
+      },
+    ])
   };
 
   // On initial render
@@ -65,28 +175,36 @@ export default function Home() {
         <SearchBar placeholder="Search for tutors..." />
       </div>
 
-      <div className="zip-code-input">
+      {/* <div className="zip-code-input">
         <input 
           type="text" 
           placeholder="Enter ZIP code" 
-          value={zipCode} 
+          value={zip} 
           onChange={(e) => setZipCode(e.target.value)} 
         />
-      </div>
+      </div> */}
       
       <div className='heading-container'>
         <h1 className='heading'>Suggested Tutors</h1>
         <div className='subheading'>Meet your match. Expert tutors tailored to your needs.</div>
       </div>
 
-      <div className='tutors-list'>
-        {tutors.map((tutor, index) => (
-          <div key={index} className='tutor-card'>
-            <h2>{tutor.firstName} {tutor.lastName}</h2>
-            <p>{tutor.bio}</p>
-            <p><strong>Distance:</strong> {tutor.distance} km</p>
-          </div>
-        ))}
+      <div className='tutor-card-container'>
+        {
+          tutors.map((tutor, index) => (
+            <TutorCard 
+              key={index}
+              pfp={tutor.pfp}
+              firstName={tutor.firstName}
+              lastName={tutor.lastName}
+              session={tutor.session}
+              distance={25}
+              institution={tutor.institution}
+              major={tutor.major}
+              subjects={tutor.subjects}
+            />
+          ))
+        }
       </div>
 
     </div>
