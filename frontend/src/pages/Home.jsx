@@ -64,10 +64,29 @@ export default function Home() {
         </div>
         <SearchBar placeholder="Search for tutors..." />
       </div>
+
+      <div className="zip-code-input">
+        <input 
+          type="text" 
+          placeholder="Enter ZIP code" 
+          value={zipCode} 
+          onChange={(e) => setZipCode(e.target.value)} 
+        />
+      </div>
       
       <div className='heading-container'>
         <h1 className='heading'>Suggested Tutors</h1>
         <div className='subheading'>Meet your match. Expert tutors tailored to your needs.</div>
+      </div>
+
+      <div className='tutors-list'>
+        {tutors.map((tutor, index) => (
+          <div key={index} className='tutor-card'>
+            <h2>{tutor.firstName} {tutor.lastName}</h2>
+            <p>{tutor.bio}</p>
+            <p><strong>Distance:</strong> {tutor.distance} km</p>
+          </div>
+        ))}
       </div>
 
     </div>
