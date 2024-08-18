@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask import Flask, jsonify, request, session
+from flask_cors import CORS, cross_origin
 from pymongo import MongoClient
 import requests
 from dotenv import load_dotenv
@@ -41,15 +41,37 @@ tutors = [
 
 # API Endpoints
 
-@app.route("/api/suggested_tutors", methods=['POST', 'GET'])
+# This route receives JSON about the student's preferences/data, in the following format:
+# {
+#   "institution": the university being attended (str)
+#   "major": the student's major (str)
+#   "subjects": the subjects the student needs help with (list of str)
+#   "session": In-Person, Virtual, or Hybrid (str)
+#   "style": Structured & Organized, Flexible & Adaptive, Casual & Relaxed, and/or Goal-Oriented & Focused (list of str)
+#   "availability": Morning, Afternoon, Evening, and/or Night (list of str)
+#   "budget": MAX $ the student willing to pay (float)
+#   "max_dist": km the student is willing to travel (float)
+# }
+# Then, this route returns JSON containing a list of suggested tutors based on the received data.
+# Receive student preferences and suggest tutors
+@app.route("/api/suggested_tutors", methods=['POST'])
+@cross_origin(origins='*')
 def suggested_tutors():
     if request.method == "POST":
         student_preferences = request.json
+
+        print(student_preferences)
+
+        suggested_tutors = list(tutor_collection.find({
+            "institution": student_preferences["institution"],
+            "session": student_preferences["session"],
+            "style": student_preferences["style"],
+            "availability": student_preferences["availability"]
+        }))
+
         # Store preferences in a collection if needed
-        return jsonify({"status": "Preferences received"}), 200
-    else:
-        suggested_tutors = list(tutor_collection.find({}))
-        return jsonify({"suggested_tutors": suggested_tutors})
+        return jsonify({"suggested_tutors": tutors})
+        
 
 # This route receives a tutor's username (username variable) from the URL and returns JSON containing the tutor's info (dict)
 # Retrieve a tutor's profile by their name (username)

@@ -32,6 +32,9 @@ export const subjectOptions = [
   "Computer Science",
   "Psychology",
   "Music",
+  "Math",
+  "Science",
+  "Physics"
 ]
 
 export const styleOptions = [

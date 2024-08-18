@@ -18,7 +18,7 @@ conn.on('error', () => {
 })
 
 app.get('/', (req,res) =>  {
-    res.send('Tutor Raccon ')
+    res.send('Tutor Raccoon ')
 })
 
 require('./routes/tutorRoute')(app);

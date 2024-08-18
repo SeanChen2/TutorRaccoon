@@ -1,4 +1,6 @@
 import "../css/Home.css";
+import { useState } from "react";
+import { HomeContext } from "../pages/Home";
 
 export default function SearchBar({...props}) {
 
