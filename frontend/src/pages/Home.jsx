@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import '../css/Home.css'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
+import Dropdown from '../Components/Dropdown'
+import { subjectOptions, styleOptions, sessionOptions, availabilityOptions, distanceOptions } from './Onboarding'
+import SearchBar from '../Components/SearchBar'
 
 const API_DOMAIN = "http://localhost:8080"
 /*
@@ -17,7 +20,7 @@ export default function Home() {
 
   //Get account info passed from Register
   const {state} = useLocation();
-  const {username, email, password} = state;
+  const {username, email, password, firstName, lastName, institution, courses, style, session, availability, zip, rates, bio} = state;
 
   const [tutors, setTutors] = useState([]);
 
@@ -42,14 +45,25 @@ export default function Home() {
 
   return (
     <>
-      <div>
+      <div className="container">
+        <div className='header'>
+          <div className='dropdown-container'>
+            <Dropdown placeholder="Course" options={subjectOptions} className="search-dropdown"/>
+            <Dropdown placeholder="Teaching Style" options={subjectOptions} className="search-dropdown"/>
+            <Dropdown placeholder="Session" options={subjectOptions} className="search-dropdown"/>
+            <Dropdown placeholder="Availability" options={subjectOptions} className="search-dropdown"/>
+            <Dropdown placeholder="Distance" options={subjectOptions} className="search-dropdown"/>
+          </div>
+          <SearchBar placeholder="Search for tutors..." />
+        </div>
+        
         <h1>Suggested Tutors (test)</h1>
         <div>
           <ul>
             {
               //"For each tutor with index i, return the following HTML..."
               tutors.map((tutor, index) => (
-                <li key={index}>{tutor["name"]}</li>
+                <li key={index}>{tutor["firstName"]}</li>
               ))
             }
           </ul>

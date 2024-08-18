@@ -7,6 +7,78 @@ import Dropdown from "../Components/Dropdown";
 import BigButton from "../Components/BigButton";
 import LimitedTextArea from "../Components/LimitedTextArea";
 
+const schoolOptions = [
+  "None",
+  "University of Toronto",
+  "University of Waterloo",
+  "McMaster University",
+  "Western University",
+  "University of Ottawa",
+]
+
+const majorOptions = [
+  "None",
+  "Engineering",
+  "Business",
+  "Computer Science",
+  "Psychology",
+  "Music",
+]
+
+export const subjectOptions = [
+  "None",
+  "Engineering",
+  "Business",
+  "Computer Science",
+  "Psychology",
+  "Music",
+]
+
+export const styleOptions = [
+  "None",
+  "Structured & Organized",
+  "Flexible & Adaptive",
+  "Casual & Relaxed",
+  "Goal-Oriented & Focused",
+]
+
+export const sessionOptions = [
+  "In-Person",
+  "Virtual",
+  "Hybrid",
+]
+
+export const availabilityOptions = [
+  "Morning",
+  "Afternoon",
+  "Evening",
+  "Night",
+]
+
+const budgetOptions = [
+  "$20 per hour",
+  "$35 per hour",
+  "$45 per hour",
+  "$60 per hour",
+]
+
+export const distanceOptions = [
+  "5 km",
+  "10 km",
+  "15 km",
+  "25 km",
+  "50 km",
+  "100 km",
+]
+
+// const styleOptions = [
+//   { value:"N/A", label: "None" },
+//   { value:"structured & organized", label: "Structured & Organized" },
+//   { value:"flexible & adaptive", label: "Flexible & Adaptive" },
+//   { value:"casual & relaxed", label: "Casual & Relaxed" },
+//   { value:"goal-oriented & focused", label: "Goal-Oriented & Focused" },
+// ]
+
 export default function Onboarding() {
 
   document.body.style = "background: white;"
@@ -29,7 +101,8 @@ export default function Onboarding() {
   const [style, setStyle] = useState(null);
   const [availability, setAvailability] = useState(null);
   const [budget, setBudget] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [zip, setZip] = useState(null);
+  const [distance, setDistance] = useState(null);
   const [bio, setBio] = useState(null);
 
   const questions = [
@@ -76,6 +149,11 @@ export default function Onboarding() {
     {
       sectionNum: 5,
       section: "5. Budget & Location",
+      questionText: "Please enter your ZIP code",
+    },
+    {
+      sectionNum: 5,
+      section: "5. Budget & Location",
       questionText: "How far are you willing to travel for in-person tutoring sessions?",
     },
     {
@@ -90,60 +168,20 @@ export default function Onboarding() {
     }
   ]
 
-  const schoolOptions = [
-    "Prefer not to answer",
-    "University of Toronto",
-    "University of Waterloo",
-    "McMaster University",
-    "Western University",
-    "University of Ottawa",
-  ]
-
-  const majorOptions = [
-    "Prefer not to answer",
-    "Engineering",
-    "Business",
-    "Computer Science",
-    "Psychology",
-    "Music",
-  ]
-
-  const subjectOptions = [
-    "Prefer not to answer",
-    "Engineering",
-    "Business",
-    "Computer Science",
-    "Psychology",
-    "Music",
-  ]
-
-  const styleOptions = [
-    "Prefer not to answer",
-    "Structured & Organized",
-    "Flexible & Adaptive",
-    "Casual & Relaxed",
-    "Goal-Oriented & Focused",
-  ]
-
-  // const styleOptions = [
-  //   { value:"N/A", label: "Prefer not to answer" },
-  //   { value:"structured & organized", label: "Structured & Organized" },
-  //   { value:"flexible & adaptive", label: "Flexible & Adaptive" },
-  //   { value:"casual & relaxed", label: "Casual & Relaxed" },
-  //   { value:"goal-oriented & focused", label: "Goal-Oriented & Focused" },
-  // ]
-
   const navPrev = () => {
     setQuestionIndex(questionIndex - 1)
     setSectionIndex(questions[questionIndex - 1].sectionNum - 1)
   };
-
+  
   const navNext = () => {
-    if (questionIndex >= questions.length - 1)
-      navigate("/home")
-
-    setQuestionIndex(questionIndex + 1)
-    setSectionIndex(questions[questionIndex + 1].sectionNum - 1)
+    if (questionIndex >= questions.length - 1) {
+      var biography = document.getElementById('bio-area').textContent;
+      navigate("/home", { state: { username, email, password, firstName, lastName, school, subjects, style, session, availability, zip, budget, biography } });
+      return;
+    }
+  
+    setQuestionIndex(questionIndex + 1);
+    setSectionIndex(questions[questionIndex + 1].sectionNum - 1);
   };
   
   return (
@@ -155,14 +193,15 @@ export default function Onboarding() {
 
       {
         questionIndex == 0 ? <div className="text-input-container">
-          <TextInput label="First name" placeholder="Enter your first name" />
-          <TextInput label="Last name" placeholder="Enter your last name" />
+          <TextInput label="First name" placeholder="Enter your first name" onChange={e => setFirstName(e.target.value)}/>
+          <TextInput label="Last name" placeholder="Enter your last name" onChange={e => setLastName(e.target.value)}/>
         </div>
 
         : questionIndex == 1 ? <div>
           <Dropdown 
             placeholder="Select School"
             options={schoolOptions}
+            onChange={e => setSchool(e.target.value)}
           />
         </div>
 
@@ -170,48 +209,73 @@ export default function Onboarding() {
           <Dropdown 
             placeholder="Select Major"
             options={majorOptions}
+            onChange={e => setMajor(e.target.value)}
           />
         </div>
 
         : questionIndex == 3 ? <div>
           <Dropdown 
-            placeholder="Enter course or subject name"
-            options={subjectOptions}  
+            placeholder="Select course or subject name"
+            options={subjectOptions}
+            onChange={e => setSubjects(e.target.value)}
           />
         </div>
 
         : questionIndex == 4 ? <div className="session-container">
-          <BigButton icon="../icons/inperson_icon.svg" className="big-button" onClick={navNext}>In-person</BigButton>
-          <BigButton icon="../icons/virtual_icon.svg" className="big-button" onClick={navNext}>Virtual</BigButton>
-          <BigButton icon="../icons/hybrid_icon.svg" className="big-button" onClick={navNext}>Hybrid</BigButton>
+          <BigButton icon="../icons/inperson_icon.svg" className="big-button" onClick={() => setSession("In-Person")}>In-person</BigButton>
+          <BigButton icon="../icons/virtual_icon.svg" className="big-button" onClick={() => setSession("Virtual")}>Virtual</BigButton>
+          <BigButton icon="../icons/hybrid_icon.svg" className="big-button" onClick={() => setSession("Hybrid")}>Hybrid</BigButton>
         </div>
 
         : questionIndex == 5 ? <div>
           <Dropdown 
             placeholder="Select teaching style"
-            options={styleOptions}  //TEMP
+            options={styleOptions}
+            onChange={e => setStyle(e.target.value)}
           />
         </div>
 
         : questionIndex == 6 ? <div className="availability-container-rows">
           <div className="availability-container-cols">
-            <BigButton icon="../icons/morning_icon.svg" className="long-button" onClick={navNext}>Morning</BigButton>
-            <BigButton icon="../icons/afternoon_icon.svg" className="long-button" onClick={navNext}>Afternoon</BigButton>
+            <BigButton icon="../icons/morning_icon.svg" className="long-button" onClick={() => setAvailability("Morning")}>Morning</BigButton>
+            <BigButton icon="../icons/afternoon_icon.svg" className="long-button" onClick={() => setAvailability("Afternoon")}>Afternoon</BigButton>
           </div>
           <div className="availability-container-cols">
-            <BigButton icon="../icons/evening_icon.svg" className="long-button" onClick={navNext}>Evening</BigButton>
-            <BigButton icon="../icons/night_icon.svg" className="long-button" onClick={navNext}>Night</BigButton>
+            <BigButton icon="../icons/evening_icon.svg" className="long-button" onClick={() => setAvailability("Evening")}>Evening</BigButton>
+            <BigButton icon="../icons/night_icon.svg" className="long-button" onClick={() => setAvailability("Night")}>Night</BigButton>
           </div>
         </div>
 
-        : questionIndex == 9 ? <div className="personality-container">
-          <BigButton icon="../icons/yes_icon.svg" className="xl-button" onClick={navNext}>Yes, I want to find the best match!</BigButton>
-          <BigButton icon="../icons/no_icon.svg" className="xl-button" onClick={navNext}>No thanks, I'll choose a tutor myself.</BigButton>
+        : questionIndex == 7 ? <div>
+          <Dropdown 
+            placeholder="Select maximum budget"
+            options={budgetOptions}
+            onChange={e => setBudget(e.target.value)}
+          />
         </div>
 
-        : questionIndex == 10 ? <LimitedTextArea
+        : questionIndex == 8 ? <div>
+          <TextInput label="ZIP Code" placeholder="Enter your ZIP code" onChange={e => setZip(e.target.value)} maxLength={6}/>
+        </div>
+
+        : questionIndex == 9 ? <div>
+          <Dropdown 
+            placeholder="Select maximum distance"
+            options={distanceOptions}
+            onChange={e => setDistance(e.target.value)}
+          />
+        </div>
+
+        : questionIndex == 10 ? <div className="personality-container">
+          <BigButton icon="../icons/yes_icon.svg" className="xl-button" >Yes, I want to find the best match!</BigButton>
+          <BigButton icon="../icons/no_icon.svg" className="xl-button" >No thanks, I'll choose a tutor myself.</BigButton>
+        </div>
+
+        : questionIndex == 11 ? <LimitedTextArea
           placeholder="Enter biography"
           charLimit={200}
+          id="bio-area"
+          //Exception: handle the text submission in the very end (navNext)
         />
 
         : <div>ERROR: onboarding page out of range</div>
@@ -219,7 +283,7 @@ export default function Onboarding() {
 
       <div className="btn-container">
         {questionIndex > 0 && <button className="prev-btn" onClick={navPrev}>Prev</button>}
-        {questionIndex < questions.length - 1 && <button className="next-btn" onClick={navNext}>Next</button>}
+        <button className="next-btn" onClick={navNext}>{questionIndex < questions.length - 1 ? "Next" : "Finish"}</button>
       </div>
 
       <ProgressBar currentIndex={sectionIndex}/>

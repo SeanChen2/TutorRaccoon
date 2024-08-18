@@ -1,9 +1,9 @@
 
 
-export default function Dropdown({placeholder, options}) {
+export default function Dropdown({placeholder, options, ...props}) {
 
     return (
-        <select name="school" className="school-dropdown">
+        <select name="school" className="school-dropdown" {...props}>
             <option value="" disabled selected>{placeholder}</option>
             {
                 options.map((optionName, index) => (

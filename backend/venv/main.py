@@ -7,11 +7,13 @@ cors = CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "*"}})
 # Tutor accounts for testing purposes
 tutors = [
     {
-        "name": "Sean",
+        "username": "Endphite",
+        "firstName": "Sean",
+        "lastName": "Chen",
         "institution": "University of Waterloo",
         "courses": ["Math", "Computer Science"],
         "style": ["Structured and Organized", "Goal-Oriented and Focused"],
-        "sessions": "In-Person",
+        "session": "In-Person",
         "availability": "Evening",
         "zip": "A#A#A#",
         "rates": "$25/hour",
@@ -82,7 +84,7 @@ def tutor_profile(username):
 # The filters are in the following JSON format:
 # {
 #   "name": the tutor's name
-#   "institution": the university being attended
+#   "distance": the tutor's max distance (km) from the user
 #   "subject": the requested subject/course
 #   "session": the requested session (In-Person, Virtual, or Hybrid)
 #   "style": Structured & Organized, Flexible & Adaptive, Casual & Relaxed, or Goal-Oriented & Focused

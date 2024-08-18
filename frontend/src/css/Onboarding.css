@@ -126,6 +126,11 @@
     margin: auto;
 }
 
+.big-button:active {
+    background-color: #3e8e41;
+    transform: translateY(4px);
+}
+
 .availability-container-rows {
     display: flex;
     flex-direction: column;
@@ -156,6 +161,11 @@
     font-weight: 500;
 }
 
+.long-button:active {
+    background-color: #3e8e41;
+    transform: translateY(4px);
+}
+
 .personality-container {
     display: flex;
     flex-direction: row;
@@ -181,6 +191,11 @@
 .xl-button div {
     font-weight: 400;
     text-align: center;
+}
+
+.xl-button:active {
+    background-color: #3e8e41;
+    transform: translateY(4px);
 }
 
 .bio-text-area {
