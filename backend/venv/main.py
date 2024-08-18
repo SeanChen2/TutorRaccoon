@@ -30,11 +30,11 @@ tutors = [
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],   #first subject is the "subject of expertise"
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
     },
 ]

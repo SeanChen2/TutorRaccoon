@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../css/Home.css'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
@@ -6,6 +6,8 @@ import Dropdown from '../Components/Dropdown'
 import { subjectOptions, styleOptions, sessionOptions, availabilityOptions, distanceOptions } from './Onboarding'
 import SearchBar from '../Components/SearchBar'
 import TutorCard from '../Components/TutorCard'
+import TutorModal from '../Components/TutorModal'
+
 
 const API_DOMAIN = "http://localhost:8080"
 /*
@@ -15,6 +17,8 @@ ALL ICON LINKS:
 <a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by Prosymbols Premium - Flaticon</a>
 */
 
+export const HomeContext = React.createContext();
+
 export default function Home() {
 
   document.body.style = "background: white;"
@@ -22,6 +26,9 @@ export default function Home() {
   // Get account info passed from Register
   const { state } = useLocation();
   const { username, email, password, firstName, lastName, institution, courses, style, session, availability, zip, rates, bio } = state;
+
+  const [modal, setModal] = useState(false);
+  const [tutorIndex, setTutorIndex] = useState(0)
 
   const [tutors, setTutors] = useState([]);
   const [distance, setDistance] = useState(null);
@@ -57,11 +64,11 @@ export default function Home() {
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
       },
       {
@@ -72,11 +79,11 @@ export default function Home() {
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
       },
       {
@@ -87,11 +94,11 @@ export default function Home() {
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
       },
       {
@@ -102,11 +109,11 @@ export default function Home() {
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
       },
       {
@@ -117,11 +124,11 @@ export default function Home() {
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
       },
       {
@@ -132,11 +139,11 @@ export default function Home() {
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
       },
       {
@@ -147,14 +154,19 @@ export default function Home() {
         "institution": "University of Waterloo",
         "major": "Software Engineering",
         "subjects": ["Math", "Computer Science"],
-        "style": ["Structured and Organized", "Goal-Oriented and Focused"],
+        "style": "Structured and Organized",
         "session": "In-Person",
         "availability": "Evening",
         "zip": "N6L1J9",
-        "rates": "$25/hour",
+        "rate": "$25/hour",
         "bio": "A focused tutor passionate about math and computer science."
       },
     ])
+  };
+
+  const toggleModal = index => {
+    setModal(!modal);
+    setTutorIndex(index);
   };
 
   // On initial render
@@ -192,6 +204,7 @@ export default function Home() {
       <div className='tutor-card-container'>
         {
           tutors.map((tutor, index) => (
+            
             <TutorCard 
               key={index}
               pfp={tutor.pfp}
@@ -202,10 +215,29 @@ export default function Home() {
               institution={tutor.institution}
               major={tutor.major}
               subjects={tutor.subjects}
+              onClick={() => toggleModal(index)}
             />
+            
           ))
         }
       </div>
+
+      <HomeContext.Provider value={[modal, setModal]}>
+        {modal && <TutorModal 
+          pfp={tutors[tutorIndex].pfp}
+          firstName={tutors[tutorIndex].firstName}
+          lastName={tutors[tutorIndex].lastName}
+          session={tutors[tutorIndex].session}
+          distance={25}
+          institution={tutors[tutorIndex].institution}
+          major={tutors[tutorIndex].major}
+          subjects={tutors[tutorIndex].subjects}
+          bio={tutors[tutorIndex].bio}
+          rate={tutors[tutorIndex].rate}
+          style={tutors[tutorIndex].style}
+          availability={tutors[tutorIndex].availability}
+        />}
+      </HomeContext.Provider>
 
     </div>
   )

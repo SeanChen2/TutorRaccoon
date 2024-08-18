@@ -57,7 +57,7 @@
 
 .tutor-card-container {
   display: grid;
-  grid-template-columns: repeat(4, 27rem);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 35rem);
 }
 
@@ -110,5 +110,6 @@
 
 .subject-box {
   border: 1px solid #5A53B2;
+  border-radius: 6px;
   padding: 1px 8px;
 }

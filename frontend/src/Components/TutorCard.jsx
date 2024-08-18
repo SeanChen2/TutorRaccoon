@@ -1,9 +1,9 @@
 
 
-export default function TutorCard({pfp, firstName, lastName, session, distance, institution, major, subjects}) {
+export default function TutorCard({pfp, firstName, lastName, session, distance, institution, major, subjects, ...props}) {
 
     return (
-        <div className="tutor-card">
+        <div className="tutor-card" {...props}>
             <div className="tutor-pfp"><img src={pfp} height="200" width="313"/></div>
 
             <div>
