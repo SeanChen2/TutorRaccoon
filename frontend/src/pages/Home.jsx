@@ -66,7 +66,7 @@ export default function Home() {
       "firstName": "Jane",
       "lastName": "Doe",
       "institution": "University of Toronto",
-      "major": "Science",
+      "major": "Physics",
       "subjects": ["Science", "Computer Science", "Physics"],
       "style": "Flexible & Adaptive",
       "session": "Virtual",
@@ -111,6 +111,8 @@ export default function Home() {
     
     //FOR TESTING
     setTutors(ogTutors)
+
+
   };
 
   const toggleModal = index => {
