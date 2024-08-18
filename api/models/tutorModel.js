@@ -21,6 +21,7 @@ const tutorSchema = new mongoose.Schema({
 
     style: {
         type: Array,
+        required:true
     },
 
     sessions: {
