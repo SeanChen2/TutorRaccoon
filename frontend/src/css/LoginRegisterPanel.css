@@ -1,11 +1,14 @@
 .container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin: auto;
-    margin-top: 8rem;
     background: white;
     padding-bottom: 30px;
     width: 30rem;
+    /* margin-top: 10%;
+    margin-left: 130%; */
 }
 
 .header {

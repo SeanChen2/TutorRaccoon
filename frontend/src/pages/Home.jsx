@@ -44,31 +44,22 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <div className="container">
-        <div className='header'>
-          <div className='dropdown-container'>
-            <Dropdown placeholder="Course" options={subjectOptions} className="search-dropdown"/>
-            <Dropdown placeholder="Teaching Style" options={subjectOptions} className="search-dropdown"/>
-            <Dropdown placeholder="Session" options={subjectOptions} className="search-dropdown"/>
-            <Dropdown placeholder="Availability" options={subjectOptions} className="search-dropdown"/>
-            <Dropdown placeholder="Distance" options={subjectOptions} className="search-dropdown"/>
-          </div>
-          <SearchBar placeholder="Search for tutors..." />
+    <div className="container">
+      <div className='header'>
+        <div className='dropdown-container'>
+          <Dropdown placeholder="Course" options={subjectOptions} className="search-dropdown"/>
+          <Dropdown placeholder="Teaching Style" options={styleOptions} className="search-dropdown"/>
+          <Dropdown placeholder="Session" options={sessionOptions} className="search-dropdown"/>
+          <Dropdown placeholder="Availability" options={availabilityOptions} className="search-dropdown"/>
+          <Dropdown placeholder="Distance" options={distanceOptions} className="search-dropdown"/>
         </div>
-        
-        <h1>Suggested Tutors (test)</h1>
-        <div>
-          <ul>
-            {
-              //"For each tutor with index i, return the following HTML..."
-              tutors.map((tutor, index) => (
-                <li key={index}>{tutor["firstName"]}</li>
-              ))
-            }
-          </ul>
-        </div>
+        <SearchBar placeholder="Search for tutors..." />
       </div>
-    </>
+      
+      <h1 className='heading'>Suggested Tutors</h1>
+      <div className='subheading'>Meet your match. Expert tutors tailored to your needs.</div>
+
+
+    </div>
   )
 }

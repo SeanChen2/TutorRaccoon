@@ -30,6 +30,26 @@ tutors = [
 
 # API Endpoints
 
+student_preferences = {}
+search_filters = {}
+
+# Create these "routes" for the frontend to "POST" (send) information to backend, or "GET" (receive) information from backend
+# and the backend returns more JSON to the frontend based on the input
+
+
+# This route receives JSON about the student's preferences/data, in the following format:
+# {
+#   "institution": the university being attended (str)
+#   "major": the student's major (str)
+#   "subjects": the subjects the student needs help with (list of str)
+#   "sessions": In-Person, Virtual, and/or Hybrid (list of str)
+#   "style": Structured & Organized, Flexible & Adaptive, Casual & Relaxed, and/or Goal-Oriented & Focused (list of str)
+#   "availability": Morning, Afternoon, Evening, and/or Night (list of str)
+#   "budget": MAX $ the student willing to pay (float)
+#   "max_dist": km the student is willing to travel (float)
+# }
+# Then, this route returns JSON containing a list of suggested tutors based on the received data.
+# Receive student preferences and suggest tutors
 @app.route("/api/suggested_tutors", methods=['POST', 'GET'])
 def suggested_tutors():
     if request.method == "POST":
